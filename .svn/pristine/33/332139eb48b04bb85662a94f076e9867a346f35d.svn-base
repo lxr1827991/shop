@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.itcast.shop.admin.article.entity">
+
+
+ <class name="Article" table="pg_article">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="title"/>
+  <property generated="never" lazy="false" name="mtitle"/>
+  
+    <property generated="never" lazy="false" name="author"/>
+  <property generated="never" lazy="false" name="source"/>
+  
+    <property generated="never" lazy="false" name="image"/>
+  <property generated="never" lazy="false" name="ctime"/>
+  <property generated="never" lazy="false" name="sort" />
+  <property generated="never" lazy="false" name="active"/>
+  <property generated="never" lazy="false" name="doc" type="text"/>
+  
+  <many-to-one class="Column" lazy="false" name="column" column="col"/>
+  <property name="docUri"/>
+ </class>
+ 
+ <class name="Column" table="pg_column">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="Column"  name="parent" />
+ <set name="childs"   cascade="all">
+         <key column="parent"/>
+         <one-to-many class="Column"/>
+      </set>
+   
+  <property generated="never" lazy="false" name="colName" />
+  <property generated="never" lazy="false" name="image"/>
+  <many-to-one class="ColumnType" column="type" name="type" />
+  <property generated="never" lazy="false" name="sort"/>
+  <property generated="never" lazy="false" name="active"/>
+  
+  <set name="articles" > 
+           <key  column="col"></key>
+           <one-to-many class="Article"/>  
+        </set> 
+ </class>
+ 
+ <class name="ColumnType" table="pg_column_type" >
+  <id name="id" >
+   <generator class="identity" />
+  </id>
+  <property generated="never" lazy="false" name="typeName"/>
+ </class>
+ 
+ <!-- 广告 -->
+ <class name="Advert" table="pg_advert">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="name"/>
+  <property generated="never" lazy="false" name="link"/>
+  <many-to-one class="AdvertType" lazy="false"  name="advertType"/>
+  <property generated="never" lazy="false" name="res"/>
+  <many-to-one class="Adsense" lazy="false" name="adsense"/>
+  <property generated="never" lazy="false" name="startDate"/>
+  <property generated="never" lazy="false" name="endDate"/>
+  <property generated="never" lazy="false" name="sort"/>
+  <property generated="never" lazy="false" name="active"/>
+ </class>
+ 
+ 
+ <class name="AdvertType" table="pg_advert_type">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="name"/>
+ </class>
+ 
+ 
+  <class name="Adsense" table="pg_adsense">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="name"/>
+  <property generated="never" lazy="false" name="width"/>
+  <property generated="never" lazy="false" name="height"/>
+  <property generated="never" lazy="false" name="illustrate"/>
+  <property generated="never" lazy="false" name="active"/>
+   <set name="adverts" > 
+           <key  column="adsense"></key>
+           <one-to-many class="Advert"/>  
+        </set> 
+  
+  
+ </class>
+ 
+  <class name="Link" table="pg_link">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="name"/>
+  <property generated="never" lazy="false" name="image"/>
+  <property generated="never" lazy="false" name="addr"/>
+  
+  <many-to-one class="LinkType" lazy="false" name="type"/>
+  <property generated="never" lazy="false" name="sort"/>
+  <property generated="never" lazy="false" name="active"/>
+ </class>
+ 
+  <class name="LinkType" table="pg_linkType">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="name"/>
+  <property generated="never" lazy="false" name="active"/>
+  <property generated="never" lazy="false" name="sort"/>
+  <set name="links" > 
+           <key  column="type"></key>
+           <one-to-many class="Link"/>  
+        </set> 
+ </class>
+ 
+ 
+ 
+</hibernate-mapping>

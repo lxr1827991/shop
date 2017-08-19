@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="false" />
+    
+    <!-- 指定由spring负责action对象的创建 -->
+	<constant name="struts.objectFactory" value="spring" />
+	
+		<!-- struts配置文件改动后，是aa否重新加载 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	
+	<!-- struts的Action访问后缀 -->
+    <constant name="struts.action.extension" value="action"/>
+    
+    
+   <!--  <package name="default_package" extends="struts-default" namespace="/">
+    <interceptors>
+			<interceptor name="defaultInterceptor" class="cn.itcast.shop.interceptor.PrivilegeInterceptor"/>
+			
+		</interceptors>
+    </package> -->
+    
+   <include file="struts-zgh.xml"/> 
+     <include file="struts-lxr.xml"/>
+
+</struts>

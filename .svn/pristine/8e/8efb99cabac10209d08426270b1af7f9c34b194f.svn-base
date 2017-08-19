@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    
+
+	<package name="admin2" extends="struts-default" namespace="/admin/whole">
+		<!-- 配置自定义拦截器 -->
+		<interceptors>
+			<interceptor name="privilegeInterceptor2" class="cn.itcast.shop.interceptor.PrivilegeInterceptor"/>
+			<interceptor-stack name="baseStack">
+			<interceptor-ref name="privilegeInterceptor2" />
+			<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="baseStack" />
+		
+		
+	
+		<global-results>
+			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
+			<result name="login">/admin/index.jsp</result>
+		</global-results>
+
+	<action name="menu_*" class="cn.itcast.shop.admin.whole.action.MenuAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/admin/whole/menu.jsp</result>
+			
+		</action>
+		
+	<action name="area_*" class="cn.itcast.shop.admin.whole.action.AreaAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/admin/success.jsp</result>
+			<result name="index">/WEB-INF/jsp/admin/whole/area_{1}.jsp</result>
+			<result name="edit">/WEB-INF/jsp/admin/whole/area_edit.jsp</result>
+		</action>
+	<action name="admin_*" class="cn.itcast.shop.admin.whole.action.AdminAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/admin/whole/area.jsp</result>
+	</action>
+	
+	<action name="role_*" class="cn.itcast.shop.admin.whole.action.RoleAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/admin/whole/area.jsp</result>
+	</action>
+		
+	</package>
+
+	<package name="admin" extends="struts-default" namespace="/admin/article" >
+		<!-- 配置自定义拦截器 -->
+		<interceptors>
+			<interceptor name="privilegeInterceptor1" class="cn.itcast.shop.interceptor.PrivilegeInterceptor"/>
+		
+		
+		<interceptor-stack name="baseStack">
+<interceptor-ref name="privilegeInterceptor1" />
+<interceptor-ref name="defaultStack" />
+</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="baseStack" />
+	
+		<global-results>
+			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
+			<result name="login">/admin/index.jsp</result>
+		    <result name="success" >  
+		         /WEB-INF/jsp/admin/success.jsp   
+		    </result> 
+		</global-results>
+
+	<action name="article_*" class="cn.itcast.shop.admin.article.action.ArticleAction" method="{1}">
+			
+			<result name="index">/WEB-INF/jsp/admin/wenzhang/article_{1}.jsp</result>
+			<result name="edit">/WEB-INF/jsp/admin/wenzhang/article_edit.jsp</result>
+		</action>
+		
+		<action name="column_*" class="cn.itcast.shop.admin.article.action.ColumnAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/admin/success.jsp</result>
+			<result name="index">/WEB-INF/jsp/admin/wenzhang/column_{1}.jsp</result>
+			<result name="edit">/WEB-INF/jsp/admin/wenzhang/column_edit.jsp</result>
+		</action>
+	
+	<!-- 广告位 -->
+		<action name="adsense_*" class="cn.itcast.shop.admin.article.action.AdsenseAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/admin/success.jsp</result>
+			<result name="index">/WEB-INF/jsp/admin/wenzhang/adsense_{1}.jsp</result>
+			<result name="edit">/WEB-INF/jsp/admin/wenzhang/adsense_edit.jsp</result>
+		</action>
+	<!-- 广告 -->
+		<action name="advert_*" class="cn.itcast.shop.admin.article.action.AdvertAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/admin/success.jsp</result>
+			<result name="index">/WEB-INF/jsp/admin/wenzhang/advert_{1}.jsp</result>
+			<result name="edit">/WEB-INF/jsp/admin/wenzhang/advert_edit.jsp</result>
+		</action>
+		
+		<action name="linkType_*" class="cn.itcast.shop.admin.article.action.LinkTypeAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/admin/success.jsp</result>
+			<result name="edit">/WEB-INF/jsp/admin/wenzhang/linkType_edit.jsp</result>
+			<result name="index">/WEB-INF/jsp/admin/wenzhang/linkType_{1}.jsp</result>
+			
+		</action>
+		
+		<action name="link_*" class="cn.itcast.shop.admin.article.action.LinkAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/admin/success.jsp</result>
+			<result name="index">/WEB-INF/jsp/admin/wenzhang/link_{1}.jsp</result>
+			<result name="edit">/WEB-INF/jsp/admin/wenzhang/link_edit.jsp</result>
+		</action>
+		
+		
+	</package>
+
+</struts>

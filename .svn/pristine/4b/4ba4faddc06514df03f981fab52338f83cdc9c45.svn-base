@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.itcast.shop.admin.whole.entity">
+
+<class name="Menu" table="wh_menu">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="name"/>
+  <many-to-one class="Menu"  name="parent" column="parent" />
+  <property generated="never" lazy="false" name="sort"/>
+  <property generated="never" lazy="false" name="active"/>
+ </class>
+
+
+<class name="Area" table="wh_area">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="name"/>
+  <property generated="never" lazy="false" name="pinyin"/>
+  <property generated="never" lazy="false" name="lng"/>
+  <property generated="never" lazy="false" name="lat"/>
+  <many-to-one class="Area"  name="parent"/>
+  <property generated="never" lazy="false" name="sort"/>
+  <property generated="never" lazy="false" name="active"/>
+  
+  
+
+ </class>
+ 
+ 
+<!--  <class name="AdminUser" table="wh_admin">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property name="account" generated="never" lazy="false" />
+  <property name="pwd" generated="never" lazy="false" />
+  <property name="email" generated="never" lazy="false" />
+  <property name="describe" generated="never" lazy="false" />
+  <many-to-one name="role" class="Role"  />
+  <property name="lastLogin" generated="never" lazy="false" />
+  <property name="lastip" generated="never" lazy="false" />
+  <property  name="active" generated="never" lazy="false"/>
+ </class> -->
+ 
+ 
+ <class name="Role" table="wh_role">
+  <id name="id">
+   <generator class="identity"/>
+  </id>
+  <property generated="never"  name="name"/>
+  <property generated="never"  name="describe"/>
+  <property generated="never"  name="sort"/>
+  <property generated="never"  name="active"/>
+ </class>
+
+
+
+
+</hibernate-mapping>
